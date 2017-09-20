@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-// Define our beer schema
 var CharacterSchema   = new mongoose.Schema({
   name: { type: String, required: true },
   type: { type: String, required: true },
