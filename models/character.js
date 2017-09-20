@@ -2,10 +2,10 @@ import mongoose from 'mongoose';
 
 // Define our beer schema
 var CharacterSchema   = new mongoose.Schema({
-  name: String,
-  type: String,
-  description: String,
-  userId: String
+  name: { type: String, required: true },
+  type: { type: String, required: true },
+  description: { type: String, required: true },
+  userId: { type: String, required: true }
 });
 
 // Export the Mongoose model
