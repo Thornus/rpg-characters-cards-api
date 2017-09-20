@@ -2,6 +2,9 @@
   "name": "rpg-characters-cards",
   "version": "0.0.1",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "babel-register": "^6.26.0",
     "bcrypt-nodejs": "0.0.3",
