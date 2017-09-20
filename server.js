@@ -10,11 +10,8 @@ import authController from './controllers/auth';
 import clientController from './controllers/client';
 import oauth2Controller from './controllers/oauth2';
 
-// Connect to the beerlocker MongoDB
-mongoose.connect('mongodb://heroku_vbq3bzsp:vtbipd0q7e9ds2n7safe5dq1ai@ds141524.mlab.com:41524/heroku_vbq3bzsp', function (error) {
-    if (error) console.error(error);
-    else console.log('mongo connected');
-});
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/rpg-characters-cards');
 
 // Create our Express application
 var app = express();
