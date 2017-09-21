@@ -11,7 +11,7 @@ import clientController from './controllers/client';
 import oauth2Controller from './controllers/oauth2';
 
 // Connect to MongoDB
-mongoose.connect('mongodb://heroku_vbq3bzsp:vtbipd0q7e9ds2n7safe5dq1ai@ds141524.mlab.com:41524/heroku_vbq3bzsp');
+mongoose.connect('mongodb://localhost:27017/rpg-characters-cards');
 
 // Create our Express application
 var app = express();
@@ -51,7 +51,7 @@ router.route('/characters/me')
 
 // Create endpoint handlers for /characters/:character_id
 router.route('/characters/:character_id')
-  .get(authController.isAuthenticated, characterController.getCharacter)
+  .get(characterController.getCharacter)
   .put(authController.isAuthenticated, characterController.putCharacter)
   .delete(authController.isAuthenticated, characterController.deleteCharacter);
 
