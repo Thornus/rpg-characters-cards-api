@@ -45,7 +45,7 @@ exports.getUserCharacters = function(req, res) {
 // Create endpoint /api/characters/:character_id for GET
 exports.getCharacter = function(req, res) {
   // Use the Character model to find a specific character
-  Character.findById({ userId: req.user._id, _id: req.params.character_id }, function(err, character) {
+  Character.findById(req.params.character_id, function(err, character) {
     if(err)
       res.send(err);
 
