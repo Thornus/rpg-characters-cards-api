@@ -52,37 +52,46 @@ exports.getCharacter = function(req, res) {
     if(character != null)
       res.json(character);
     else
-      res.json({ message: "Character with id "+req.params.character_id+" doesn't exist" });
+      res.json({ message: "Character with id "+req.params.character_id+" doesn't exist." });
   });
 };
 
 // Create endpoint /api/characters/:character_id for PUT
 exports.putCharacter = function(req, res) {
-  // Use the Character model to find a specific beer
+  // Use the Character model to find a specific character
   Character.findById({ userId: req.user._id, _id: req.params.character_id }, function(err, character) {
-    if (err)
+    if(err)
       res.send(err);
+
+    // Update the existing character name
+    character.name = req.body.name;
 
     // Update the existing character description
     character.description = req.body.description;
+
+    // Update the existing character type
+    character.type = req.body.type;
 
     // Save the character and check for errors
     character.save(function(err) {
       if (err)
         res.send(err);
 
-      res.json(character);
+      res.json({ message: "The character has been modified!", data: character});
     });
   });
 };
 
 // Create endpoint /api/characters/:character_id for DELETE
 exports.deleteCharacter = function(req, res) {
-  // Use the Beer model to find a specific beer and remove it
-  Character.findByIdAndRemove({ userId: req.user._id, _id: req.params.character_id}, function(err) {
+  // Use the Character model to find a specific character and remove it
+  Character.findByIdAndRemove({ userId: req.user._id, _id: req.params.character_id }, function(err, character) {
     if (err)
       res.send(err);
 
-    res.json({ message: 'Character removed from database!' });
+    if(character)
+      res.json({ message: 'Character removed from database!' });
+    else
+      res.json({ message: "Character with id "+req.params.character_id+" doesn't exist." });
   });
 };
