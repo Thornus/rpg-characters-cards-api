@@ -52,7 +52,7 @@ exports.getCharacter = function(req, res) {
     if(character != null)
       res.json(character);
     else
-      res.json({ message: "Character with id "+req.params.character_id+" doesn't exist." });
+      res.json({ message: "Character with id "+req.params.character_id+" doesn't exist." } );
   });
 };
 
@@ -63,22 +63,26 @@ exports.putCharacter = function(req, res) {
     if(err)
       res.send(err);
 
-    // Update the existing character name
-    character.name = req.body.name;
+    if(req.user._id == character.userId) {
+      // Update the existing character name
+      character.name = req.body.name;
 
-    // Update the existing character description
-    character.description = req.body.description;
+      // Update the existing character description
+      character.description = req.body.description;
 
-    // Update the existing character type
-    character.type = req.body.type;
+      // Update the existing character type
+      character.type = req.body.type;
 
-    // Save the character and check for errors
-    character.save(function(err) {
-      if (err)
-        res.send(err);
+      // Save the character and check for errors
+      character.save(function(err) {
+        if (err)
+          res.send(err);
 
-      res.json({ message: "The character has been modified!", data: character});
-    });
+        res.json({ message: "The character has been modified!", data: character});
+      });
+    } else {
+      res.json({ message: "Unauthorized! The character you tried to update was created by another user."} );
+    }
   });
 };
 
