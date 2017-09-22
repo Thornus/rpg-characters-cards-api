@@ -10,7 +10,7 @@ This is a Node.js and MongoDB powered API that implements CRUD functionalities t
   - [Adding characters](#adding-characters)
   - [Getting characters](#getting-characters)
   - [Updating characters](#updating-characters)
-  - [Removing characters](#removing-characters)
+  - [Deleting characters](#deleting-characters)
 - [Client applications](#client-applications)
   - [Adding client applications](#adding-client-applications)
   - [Getting client applications](#getting-client-applications)
@@ -131,8 +131,8 @@ The correct response would be:
     }
 }
 ```
-<a name="removing-characters"></a>
-### Removing characters
-To remove a character, make a DELETE request to ```/api/characters/:character_id```
+<a name="deleting-characters"></a>
+### Deleting characters
+To delete a character, make a DELETE request to ```/api/characters/:character_id```
 
 On the live version, make a DELETE request to ```https://rpg-characters-cards-api.herokuapp.com/api/characters/:character_id```
