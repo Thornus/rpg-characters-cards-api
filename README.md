@@ -31,8 +31,8 @@ On the live version, make a POST request to ```https://rpg-characters-cards-api.
 
 You are required to insert the following data in the body of the request:
 
-- ```username```
-- ```password```
+- ```username``` - String
+- ```password``` - String
 
 Example of correct response:
 ```
@@ -65,9 +65,9 @@ To add a character, make a POST request to ```/api/characters```
 On the live version, make a POST request to ```https://rpg-characters-cards-api.herokuapp.com/api/characters```
 
 You are required to be **authenticated** and insert the following data in the body of the request:
-- ```name```
-- ```description```
-- ```type``` - might be Hero, Enemy, Monster...
+- ```name``` - String
+- ```description``` - String
+- ```type``` - String (might be Hero, Enemy, Monster...)
 
 Example of correct response:
 ```
@@ -101,5 +101,31 @@ An example of request would be ```https://rpg-characters-cards-api.herokuapp.com
     "type": "Hero",
     "name": "Link",
     "__v": 0
+}
+```
+### Updating characters
+To update a character, make a PUT request to ```/api/characters/:character_id```
+
+On the live version, make a PUT request to ```https://rpg-characters-cards-api.herokuapp.com/api/characters/:character_id```
+
+You are required to be **authenticated** and can modify only the characters you created. All the following parameters must be in the body of the request:
+- ```name``` - String
+- ```description``` - String
+- ```type``` - String (might be Hero, Enemy, Monster...)
+
+If we want to modify the ```type``` of a character from "Hero" to "Legendary Hero", we make a PUT request to ```https://rpg-characters-cards-api.herokuapp.com/api/characters/59c2c1dd751db00012655e60``` with ```type``` set to "Legendary Hero" and ```name``` and ```description``` unchanged.
+
+The correct response would be:
+```
+{
+    "message": "The character has been modified!",
+    "data": {
+        "_id": "59c4f107780f6200120202dd",
+        "userId": "59c2a3cb1c5c000012d7a5a6",
+        "description": "The famous hero of \"The Legend of Zelda\" series.",
+        "type": "Legendary Hero",
+        "name": "Link",
+        "__v": 0
+    }
 }
 ```
