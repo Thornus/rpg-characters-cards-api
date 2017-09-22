@@ -38,6 +38,9 @@ exports.getUserCharacters = function(req, res) {
     if (err)
       res.send(err);
 
+    if(characters.length == 0)
+      res.json({message: "You still haven't created any character. Why not starting now?"});
+
     res.json(characters);
   });
 };
@@ -93,9 +96,12 @@ exports.deleteCharacter = function(req, res) {
     if (err)
       res.send(err);
 
-    if(character)
-      res.json({ message: 'Character removed from database!' });
-    else
+    if(character) {
+      if(req.user._id == character.userId)
+        res.json({ message: 'Character deleted!' });
+      else
+        res.json({ message: "Unauthorized! The character you tried to delete was created by another user."} );
+    } else
       res.json({ message: "Character with id "+req.params.character_id+" doesn't exist." });
   });
 };
